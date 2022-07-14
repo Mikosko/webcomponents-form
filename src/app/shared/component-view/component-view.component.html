@@ -1,0 +1,14 @@
+<p>
+  <label>{{ label }}</label>
+</p>
+
+<p>
+  <ng-content></ng-content>
+</p>
+
+<h6>Actions</h6>
+<div class="bg-light p-3">
+  <pre
+    class="d-flex flex-column-reverse"
+  ><div *ngFor="let a of actions">{{a| json }}</div></pre>
+</div>
