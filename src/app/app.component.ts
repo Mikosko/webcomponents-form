@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { map, scan, startWith } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { map, scan, startWith } from 'rxjs/operators';
 export class AppComponent {
   title = 'cmx-webcomponents-test';
 
-  constructor(public fb: FormBuilder) {}
+  constructor(public fb: FormBuilder, public cd: ChangeDetectorRef) {}
 
   public activeComponent$ = new BehaviorSubject(0);
 
@@ -62,6 +62,22 @@ export class AppComponent {
     { value: '5', name: 'Value_5' },
     { value: '6', name: 'Value_6' },
   ];
+
+  public updateValues() {
+    this.form.patchValue({
+      cwcCheckbox: this.cwcCheckboxModel,
+      cwcDate: this.cwcDateModel,
+      cwcDateRange: this.cwcDateRangeModel,
+      cwcRadioGroup: this.cwcRadioGroupModel,
+      cwcRangeNumber: this.cwcRangeNumberModel,
+      cwcNumber: this.cwcNumberModel,
+      cwcRater: this.cwcRaterModel,
+      cwcPickerMultiple: this.cwcPickerMultipleModel,
+      cwcPicker: this.cwcPicker,
+      cwcTextArea: this.cwcTextAreaModel,
+      cwcInput: this.cwcInputModel,
+    });
+  }
 
   public cwcInputActions$ = this.form.controls['cwcInput'].valueChanges.pipe(
     map((d) => ({ OnChange: d })),
