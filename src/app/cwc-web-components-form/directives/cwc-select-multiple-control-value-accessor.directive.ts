@@ -1,5 +1,6 @@
 import { Directive, forwardRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
+import { buildValueString } from '../utils/build-value-string';
 import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-control-value-accessor.directive';
 
 @Directive({
@@ -33,6 +34,13 @@ export class CwcSelectMultipleControlValueAccessorDirective
       };
 
       this.optionMap.forEach(optionSelectedStateSetter);
+
+      const valueString = value.map((v: any) => {
+        const id = this.getOptionId(v);
+        return buildValueString(id, v);
+      });
+
+      this.setProperty('value', valueString);
     }
   }
 

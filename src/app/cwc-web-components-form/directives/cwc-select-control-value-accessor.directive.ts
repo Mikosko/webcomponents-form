@@ -1,5 +1,6 @@
 import { Directive, forwardRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
+import { buildValueString } from '../utils/build-value-string';
 import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-control-value-accessor.directive';
 
 @Directive({
@@ -24,6 +25,8 @@ export class CwcSelectControlValueAccessorDirective
   public /*override*/ writeValue(value: any): void {
     this.value = value;
     const id = this.getOptionId(value);
+    const valueString = buildValueString(id, value);
+    this.setProperty('value', valueString);
 
     const optionSelectedStateSetter = (opt: any, o: any) => {
       opt.setSelected(id === o);

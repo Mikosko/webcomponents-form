@@ -1,101 +1,50 @@
-<div
-  class="container"
-  *ngIf="{ activeView: activeComponent$ | async } as state"
->
+<div class="container" *ngIf="{ activeView: activeComponent$ | async } as state">
   <div class="row pt-3">
     <div class="col">
-      <div
-        class="btn-group mb-4"
-        role="group"
-        aria-label="Basic outlined example"
-      >
-        <button
-          type="button"
-          [class.active]="state.activeView === 0"
-          class="btn btn-outline-primary"
-          (click)="activeComponent$.next(0)"
-        >
+      <div class="btn-group mb-4" role="group" aria-label="Basic outlined example">
+        <button type="button" [class.active]="state.activeView === 0" class="btn btn-outline-primary"
+          (click)="activeComponent$.next(0)">
           Cwc Range number
         </button>
 
-        <button
-          type="button"
-          class="btn btn-outline-primary"
-          [class.active]="state.activeView === 1"
-          (click)="activeComponent$.next(1)"
-        >
+        <button type="button" class="btn btn-outline-primary" [class.active]="state.activeView === 1"
+          (click)="activeComponent$.next(1)">
           Cwc Rater
         </button>
-        <button
-          (click)="activeComponent$.next(2)"
-          [class.active]="state.activeView === 2"
-          type="button"
-          class="btn btn-outline-primary"
-        >
+        <button (click)="activeComponent$.next(2)" [class.active]="state.activeView === 2" type="button"
+          class="btn btn-outline-primary">
           Cwc Textarea
         </button>
-        <button
-          (click)="activeComponent$.next(3)"
-          [class.active]="state.activeView === 3"
-          type="button"
-          class="btn btn-outline-primary"
-        >
+        <button (click)="activeComponent$.next(3)" [class.active]="state.activeView === 3" type="button"
+          class="btn btn-outline-primary">
           Cwc Number
         </button>
-        <button
-          (click)="activeComponent$.next(4)"
-          [class.active]="state.activeView === 4"
-          type="button"
-          class="btn btn-outline-primary"
-        >
+        <button (click)="activeComponent$.next(4)" [class.active]="state.activeView === 4" type="button"
+          class="btn btn-outline-primary">
           Cwc Date
         </button>
-        <button
-          (click)="activeComponent$.next(5)"
-          [class.active]="state.activeView === 5"
-          type="button"
-          class="btn btn-outline-primary"
-        >
+        <button (click)="activeComponent$.next(5)" [class.active]="state.activeView === 5" type="button"
+          class="btn btn-outline-primary">
           Cwc Date Range
         </button>
-        <button
-          (click)="activeComponent$.next(6)"
-          [class.active]="state.activeView === 6"
-          type="button"
-          class="btn btn-outline-primary"
-        >
+        <button (click)="activeComponent$.next(6)" [class.active]="state.activeView === 6" type="button"
+          class="btn btn-outline-primary">
           Cwc Checkbox
         </button>
-        <button
-          type="button"
-          (click)="activeComponent$.next(7)"
-          [class.active]="state.activeView === 7"
-          class="btn btn-outline-primary"
-        >
+        <button type="button" (click)="activeComponent$.next(7)" [class.active]="state.activeView === 7"
+          class="btn btn-outline-primary">
           Cwc Radio
         </button>
-        <button
-          type="button"
-          (click)="activeComponent$.next(8)"
-          [class.active]="state.activeView === 8"
-          class="btn btn-outline-primary"
-        >
+        <button type="button" (click)="activeComponent$.next(8)" [class.active]="state.activeView === 8"
+          class="btn btn-outline-primary">
           Cwc Picker
         </button>
-        <button
-          type="button"
-          (click)="activeComponent$.next(9)"
-          [class.active]="state.activeView === 9"
-          class="btn btn-outline-primary"
-        >
+        <button type="button" (click)="activeComponent$.next(9)" [class.active]="state.activeView === 9"
+          class="btn btn-outline-primary">
           Cwc Picker Multiple
         </button>
-        <button
-          type="button"
-          (click)="activeComponent$.next(10)"
-          [class.active]="state.activeView === 10"
-          class="btn btn-outline-primary"
-        >
+        <button type="button" (click)="activeComponent$.next(10)" [class.active]="state.activeView === 10"
+          class="btn btn-outline-primary">
           Cwc Input
         </button>
       </div>
@@ -108,132 +57,69 @@
         <h5>Components</h5>
 
         <form [formGroup]="form">
-          <app-component-view
-            [visible]="state.activeView === 0"
-            label="Cwc Range number"
-            [actions]="cwcRangeNumberActions$ | async"
-          >
-            <cwc-numeric-filter
-              formControlName="cwcRangeNumber"
-            ></cwc-numeric-filter>
+          <app-component-view [visible]="state.activeView === 0" label="Cwc Range number"
+            [actions]="cwcRangeNumberActions$ | async">
+            <cwc-numeric-filter formControlName="cwcRangeNumber"></cwc-numeric-filter>
           </app-component-view>
 
-          <app-component-view
-            [visible]="state.activeView === 1"
-            label="Cwc Rater"
-            [actions]="cwcRaterActions$ | async"
-          >
+          <app-component-view [visible]="state.activeView === 1" label="Cwc Rater" [actions]="cwcRaterActions$ | async">
             <cwc-rater formControlName="cwcRater"></cwc-rater>
           </app-component-view>
 
-          <app-component-view
-            [visible]="state.activeView === 2"
-            label="Cwc Textarea"
-            [actions]="cwcTextAreaActions$ | async"
-          >
+          <app-component-view [visible]="state.activeView === 2" label="Cwc Textarea"
+            [actions]="cwcTextAreaActions$ | async">
             <cwc-textarea formControlName="cwcTextArea"> </cwc-textarea>
           </app-component-view>
 
-          <app-component-view
-            [visible]="state.activeView === 3"
-            label="Cwc Number"
-            [actions]="cwcNumberActions$ | async"
-          >
+          <app-component-view [visible]="state.activeView === 3" label="Cwc Number"
+            [actions]="cwcNumberActions$ | async">
             <cwc-input-number formControlName="cwcNumber"> </cwc-input-number>
           </app-component-view>
 
-          <app-component-view
-            [visible]="state.activeView === 4"
-            label="Cwc Date"
-            [actions]="cwcDateActions$ | async"
-          >
-            <cwc-input-date
-              formControlName="cwcDate"
-              control-buttons="true"
-            ></cwc-input-date>
+          <app-component-view [visible]="state.activeView === 4" label="Cwc Date" [actions]="cwcDateActions$ | async">
+            <cwc-input-date formControlName="cwcDate" control-buttons="true"></cwc-input-date>
           </app-component-view>
 
-          <app-component-view
-            [visible]="state.activeView === 5"
-            label="Cwc Date Range"
-            [actions]="cwcDateRangeActions$ | async"
-          >
-            <cwc-input-date
-              range
-              formControlName="cwcDateRange"
-            ></cwc-input-date>
+          <app-component-view [visible]="state.activeView === 5" label="Cwc Date Range"
+            [actions]="cwcDateRangeActions$ | async">
+            <cwc-input-date range formControlName="cwcDateRange"></cwc-input-date>
           </app-component-view>
 
-          <app-component-view
-            [visible]="state.activeView === 6"
-            label="Cwc Checkbox"
-            [actions]="cwcCheckboxActions$ | async"
-          >
+          <app-component-view [visible]="state.activeView === 6" label="Cwc Checkbox"
+            [actions]="cwcCheckboxActions$ | async">
             <cwc-checkbox formControlName="cwcCheckbox"> </cwc-checkbox>
           </app-component-view>
 
-          <app-component-view
-            [visible]="state.activeView === 7"
-            label="Cwc Radio"
-            [actions]="cwcRadioGroupActions$ | async"
-          >
-            <cwc-radio-group
-              name="name_1"
-              formControlName="cwcRadioGroup"
-              [cwcCompareWith]="'id' | compareWith"
-            >
-              <cwc-radio
-                style="margin-right: 1rem"
-                *ngFor="let opt of options; trackBy: 'id' | trackBy"
-                [cwcValue]="opt"
-              >
+          <app-component-view [visible]="state.activeView === 7" label="Cwc Radio"
+            [actions]="cwcRadioGroupActions$ | async">
+            <cwc-radio-group name="name_1" formControlName="cwcRadioGroup" [cwcCompareWith]="'id' | compareWith">
+              <cwc-radio style="margin-right: 1rem" *ngFor="let opt of options; trackBy: 'id' | trackBy"
+                [cwcValue]="opt">
                 {{ opt.name }}
               </cwc-radio>
             </cwc-radio-group>
           </app-component-view>
 
-          <app-component-view
-            [visible]="state.activeView === 8"
-            label="Cwc Picker"
-            [actions]="cwcPickerActions$ | async"
-          >
-            <cwc-picker
-              formControlName="cwcPicker"
-              [cwcCompareWith]="'id' | compareWith"
-            >
-              <option
-                *ngFor="let opt of options; trackBy: 'id' | trackBy"
-                [cwcValue]="opt"
-              >
+          <app-component-view [visible]="state.activeView === 8" label="Cwc Picker"
+            [actions]="cwcPickerActions$ | async">
+            <cwc-picker formControlName="cwcPicker" [cwcCompareWith]="'id' | compareWith">
+              <option *ngFor="let opt of options; trackBy: 'id' | trackBy" [cwcValue]="opt">
                 {{ opt.name }}
               </option>
             </cwc-picker>
           </app-component-view>
 
-          <app-component-view
-            [visible]="state.activeView === 9"
-            label="Cwc Picker Multiple"
-            [actions]="cwcPickerMultipleActions$ | async"
-          >
-            <cwc-picker
-              formControlName="cwcPickerMultiple"
-              [cwcCompareWith]="'id' | compareWith"
-              multiple="true"
-            >
-              <option
-                *ngFor="let opt of options; trackBy: 'id' | trackBy"
-                [cwcValue]="opt"
-              >
+          <app-component-view [visible]="state.activeView === 9" label="Cwc Picker Multiple"
+            [actions]="cwcPickerMultipleActions$ | async">
+            <cwc-picker formControlName="cwcPickerMultiple" [cwcCompareWith]="'id' | compareWith" multiple="true">
+              <option *ngFor="let opt of options; trackBy: 'id' | trackBy" [cwcValue]="opt">
                 {{ opt.name }}
               </option>
             </cwc-picker>
           </app-component-view>
 
-          <app-component-view
-            [visible]="state.activeView === 10"
-            label="Cwc Input"
-            [actions]="cwcInputActions$ | async"
-          >
+          <app-component-view [visible]="state.activeView === 10" label="Cwc Input"
+            [actions]="cwcInputActions$ | async">
             <cwc-input formControlName="cwcInput"> </cwc-input>
           </app-component-view>
 
@@ -248,6 +134,28 @@
       </div>
     </div>
   </div>
+
+  <cwc-numeric-filter [lowerValue]="ref1.value" [upperValue]="ref2.value"></cwc-numeric-filter>
+
+  <input type="number" value="200" #ref1>
+  <input type="number" value="700" #ref2>
+  <div>
+    <p>
+      <label>Cwc radio - ngModel binding</label>
+    </p>
+    <cwc-radio-group name="text" [(ngModel)]="cwcRadioGroupModel" [cwcCompareWith]="'id' | compareWith">
+      <cwc-radio style="margin-right: 1rem" *ngFor="let opt of options; trackBy: 'id' | trackBy" [cwcValue]="opt">
+        {{ opt.name }}
+      </cwc-radio>
+    </cwc-radio-group>
+    <br />
+    <pre>{{ cwcRadioGroupModel | json }}</pre>
+  </div>
+
+  <cwc-picker [cwcCompareWith]="'id' | compareWith" [(ngModel)]="cwcRadioGroupModel">
+    <option *ngFor="let opt of options; trackBy: 'id' | trackBy" [cwcValue]="opt">{{opt.name}}</option>
+  </cwc-picker>
+
   <!--
   <div>
     <p>

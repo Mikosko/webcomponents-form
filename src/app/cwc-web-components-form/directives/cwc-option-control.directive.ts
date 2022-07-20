@@ -7,6 +7,7 @@ import {
   Optional,
   Renderer2,
 } from '@angular/core';
+import { CwcPickerOption } from '@cmx-web-components/angular';
 import { buildValueString } from '../utils/build-value-string';
 import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-control-value-accessor.directive';
 
@@ -59,12 +60,18 @@ export class CwcOptionControlDirective implements OnDestroy {
   }
 
   public setSelected(isSelected: boolean) {
-    const action = isSelected ? 'setAttribute' : 'removeAttribute';
-    this._renderer[action](
-      this._elementRef.nativeElement,
-      'selected',
-      `${isSelected}`
-    );
+    if (isSelected) {
+      this._renderer.setAttribute(
+        this._elementRef.nativeElement,
+        'selected',
+        'true'
+      );
+    } else {
+      this._renderer.removeAttribute(
+        this._elementRef.nativeElement,
+        'selected'
+      );
+    }
   }
 
   protected setProperty(key: string, value: any): void {

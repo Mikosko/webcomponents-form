@@ -47,4 +47,8 @@ export class CwcBaseControlValueAccessorDirective
   protected setProperty(key: string, value: any): void {
     this._renderer.setProperty(this._elementRef.nativeElement, key, value);
   }
+
+  protected getShadowElement<E = any>(): E {
+    return this._elementRef.nativeElement;
+  }
 }
