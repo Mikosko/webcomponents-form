@@ -1,5 +1,6 @@
 import { Directive, HostBinding } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
+import { CwcNumericFilter } from '@cmx-web-components/angular';
 import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-accessor.directive';
 
 @Directive({
@@ -22,5 +23,10 @@ export class CwcRangeNumberControlValueAccessorDirective
   public writeValue(value: number[]): void {
     this.lowerValue = value[0];
     this.upperValue = value[1];
+
+    this.getShadowElement<CwcNumericFilter>().setValues(
+      this.lowerValue,
+      this.upperValue
+    );
   }
 }
