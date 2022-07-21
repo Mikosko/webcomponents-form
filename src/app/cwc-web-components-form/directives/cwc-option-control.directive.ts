@@ -5,14 +5,16 @@ import {
   Input,
   OnDestroy,
   Optional,
-  Renderer2,
+  Renderer2
 } from '@angular/core';
-import { CwcPickerOption } from '@cmx-web-components/angular';
 import { buildValueString } from '../utils/build-value-string';
 import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-control-value-accessor.directive';
 
 @Directive({
-  selector: 'cwc-radio, cwc-picker > option, [cwcOptionControl]',
+  selector: `,
+    cwc-radio,
+    cwc-picker > option,
+    [cwcOptionControl]`,
   host: { '(cwcBlur)': 'onTouched()' },
 })
 export class CwcOptionControlDirective implements OnDestroy {

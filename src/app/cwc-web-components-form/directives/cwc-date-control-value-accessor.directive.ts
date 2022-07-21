@@ -4,7 +4,11 @@ import { coerceBooleanProperty } from '../utils/coerce-boolean-property';
 import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-accessor.directive';
 
 @Directive({
-  selector: 'cwc-input-date, [cwcDateControlValueAccessor]',
+  selector: `
+    cwc-input-date[formControlName],
+    cwc-input-date[formControl],
+    cwc-input-date[ngModel],
+    [cwcDateControlValueAccessor]`,
   host: {
     // cwcChange is used only for ApplyButton
     '(cwcChange)': 'applyChange()',

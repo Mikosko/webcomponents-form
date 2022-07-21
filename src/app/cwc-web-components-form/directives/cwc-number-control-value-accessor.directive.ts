@@ -4,7 +4,11 @@ import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-a
 import { coerceNumberProperty } from '../utils/coerce-number-property';
 
 @Directive({
-  selector: 'cwc-input-number, [cwcNumberControlValueAccessor]',
+  selector: `
+    cwc-input-number[formControlName],
+    cwc-input-number[formControl],
+    cwc-input-number[ngModel],
+    [cwcNumberControlValueAccessor]`,
   host: {
     '(cwcChange)': 'onChange($event.detail)',
     '(cwcBlur)': 'onTouched()',

@@ -3,7 +3,11 @@ import { ControlValueAccessor } from '@angular/forms';
 import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-control-value-accessor.directive';
 
 @Directive({
-  selector: 'cwc-radio-group, [cwcRadioGroupValueAccessor]',
+  selector: `
+    cwc-radio-group[formControlName],
+    cwc-radio-group[formControl],
+    cwc-radio-group[ngModel],
+    [cwcRadioGroupValueAccessor]`,
   host: {
     '(cwcChange)': 'onChange($event.detail); onTouched()',
     '(cwcBlur)': 'onTouched()',

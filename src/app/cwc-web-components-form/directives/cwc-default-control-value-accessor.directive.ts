@@ -3,7 +3,14 @@ import { ControlValueAccessor } from '@angular/forms';
 import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-accessor.directive';
 
 @Directive({
-  selector: 'cwc-input, cwc-textarea, [cwcDefaultControlValueAccessor]',
+  selector: `
+    cwc-input[formControlName],
+    cwc-input[formControl],
+    cwc-input[ngModel],
+    cwc-textarea[formControlName],
+    cwc-textarea[formControl],
+    cwc-textarea[ngModel],
+    [cwcDefaultControlValueAccessor]`,
   host: {
     '(cwcChange)': 'onChange($event.detail)',
     '(cwcBlur)': 'onTouched()',

@@ -35,7 +35,7 @@ export class CwcOptionGroupControlValueAccessorDirective<V>
   }
 
   @Input()
-  public cwcCompareWith = Object.is;
+  public compareWith = Object.is;
 
   public registerOption(optionRef: CwcOptionControlDirective) {
     const id = `${this._idCounter++}`;
@@ -48,7 +48,7 @@ export class CwcOptionGroupControlValueAccessorDirective<V>
     // TODO: https://github.com/angular/angular/issues/14988
     for (let id of Array.from(this.optionMap.keys())) {
       if (this.optionMap.get(id)!.value !== undefined && value) {
-        if (this.cwcCompareWith(this.optionMap.get(id)!.value, value)) {
+        if (this.compareWith(this.optionMap.get(id)!.value, value)) {
           return id;
         }
       }

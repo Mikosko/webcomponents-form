@@ -4,7 +4,11 @@ import { buildValueString } from '../utils/build-value-string';
 import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-control-value-accessor.directive';
 
 @Directive({
-  selector: 'cwc-picker[multiple], [cwcSelectMultipleControlValueAccessor]',
+  selector: `
+    cwc-picker[multiple]:not([cwcFormDisabled])[formControlName],
+    cwc-picker[multiple]:not([cwcFormDisabled])[formControl],
+    cwc-picker[multiple]:not([cwcFormDisabled])[ngModel],
+    [cwcSelectMultipleControlValueAccessor]`,
   host: {
     '(cwcChange)': 'onChange($event.detail); onTouched()',
     '(cwcBlur)': 'onTouched()',

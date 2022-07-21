@@ -1,10 +1,14 @@
 import { Directive } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-accessor.directive';
 import { coerceNumberProperty } from '../utils/coerce-number-property';
+import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-accessor.directive';
 
 @Directive({
-  selector: 'cwc-rater, [cwcRatingControlValueAccessor]',
+  selector: `
+    cwc-rater[formControlName],
+    cwc-rater[formControl],
+    cwc-rater[ngModel],
+    [cwcRatingControlValueAccessor]`,
   host: {
     '(cwcChange)': 'onChange($event.detail)',
     '(cwcBlur)': 'onTouched()',

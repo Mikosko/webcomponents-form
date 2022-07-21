@@ -4,7 +4,11 @@ import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-a
 import { coerceBooleanProperty } from '../utils/coerce-boolean-property';
 
 @Directive({
-  selector: 'cwc-checkbox, [cwcCheckboxControlValueAccessor]',
+  selector: `
+    cwc-checkbox[formControlName],
+    cwc-checkbox[formControl],
+    cwc-checkbox[ngModel],
+    [cwcCheckboxControlValueAccessor]`,
   host: {
     '(cwcChange)': 'onChange($event.detail)',
     '(cwcBlur)': 'onTouched()',

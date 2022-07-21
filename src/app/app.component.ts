@@ -63,6 +63,8 @@ export class AppComponent {
     { value: '6', name: 'Value_6' },
   ];
 
+  public log = ($e: any) => console.log($e);
+
   public updateValues() {
     this.form.patchValue({
       cwcCheckbox: this.cwcCheckboxModel,
