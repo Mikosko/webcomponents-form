@@ -26,8 +26,10 @@ export class CwcRangeNumberControlValueAccessorDirective
   public lowerValue!: number;
 
   public writeValue(value: number[]): void {
-    this.lowerValue = coerceNumberProperty(value[0] || 0);
-    this.upperValue = coerceNumberProperty(value[1] || 0);
+    if (Array.isArray(value)) {
+      this.lowerValue = coerceNumberProperty(value[0] || 0);
+      this.upperValue = coerceNumberProperty(value[1] || 0);
+    }
 
     this.updateValues();
   }

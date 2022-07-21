@@ -47,6 +47,14 @@
           class="btn btn-outline-primary">
           Cwc Input
         </button>
+        <button type="button" (click)="activeComponent$.next(11)" [class.active]="state.activeView === 11"
+          class="btn btn-outline-primary">
+          Cwc Select
+        </button>
+        <button type="button" (click)="activeComponent$.next(12)" [class.active]="state.activeView === 12"
+          class="btn btn-outline-primary">
+          Cwc Select Multiple
+        </button>
       </div>
     </div>
   </div>
@@ -92,8 +100,8 @@
 
           <app-component-view [visible]="state.activeView === 7" label="Cwc Radio"
             [actions]="cwcRadioGroupActions$ | async">
-            <cwc-radio-group name="name_1" formControlName="cwcRadioGroup" [compareWith]="'id' | compareWith">
-              <cwc-radio style="margin-right: 1rem" *ngFor="let opt of options; trackBy: 'id' | trackBy"
+            <cwc-radio-group name="name_1" formControlName="cwcRadioGroup" [compareWith]="'id' | cwcCompareWith">
+              <cwc-radio style="margin-right: 1rem" *ngFor="let opt of options; trackBy: 'id' | cwcTrackBy"
                 [cwcValue]="opt">
                 {{ opt.name }}
               </cwc-radio>
@@ -102,8 +110,8 @@
 
           <app-component-view [visible]="state.activeView === 8" label="Cwc Picker"
             [actions]="cwcPickerActions$ | async">
-            <cwc-picker formControlName="cwcPicker" [compareWith]="'id' | compareWith">
-              <option *ngFor="let opt of options; trackBy: 'id' | trackBy" [cwcValue]="opt">
+            <cwc-picker formControlName="cwcPicker" [compareWith]="'id' | cwcCompareWith">
+              <option *ngFor="let opt of options; trackBy: 'id' | cwcTrackBy" [cwcValue]="opt">
                 {{ opt.name }}
               </option>
             </cwc-picker>
@@ -111,8 +119,8 @@
 
           <app-component-view [visible]="state.activeView === 9" label="Cwc Picker Multiple"
             [actions]="cwcPickerMultipleActions$ | async">
-            <cwc-picker formControlName="cwcPickerMultiple" [compareWith]="'id' | compareWith" multiple="true">
-              <option *ngFor="let opt of options; trackBy: 'id' | trackBy" [cwcValue]="opt">
+            <cwc-picker formControlName="cwcPickerMultiple" [compareWith]="'id' | cwcCompareWith" multiple="true">
+              <option *ngFor="let opt of options; trackBy: 'id' | cwcTrackBy" [cwcValue]="opt">
                 {{ opt.name }}
               </option>
             </cwc-picker>
@@ -121,6 +129,24 @@
           <app-component-view [visible]="state.activeView === 10" label="Cwc Input"
             [actions]="cwcInputActions$ | async">
             <cwc-input formControlName="cwcInput"> </cwc-input>
+          </app-component-view>
+
+          <app-component-view [visible]="state.activeView === 11" label="Cwc Input"
+            [actions]="cwcPickerActions$ | async">
+            <cwc-select formControlName="cwcPicker" [compareWith]="'id' | cwcCompareWith">
+              <cwc-select-option *ngFor="let opt of options; trackBy: 'id' | cwcTrackBy" [cwcValue]="opt">
+                {{ opt.name }}
+              </cwc-select-option>
+            </cwc-select>
+          </app-component-view>
+
+          <app-component-view [visible]="state.activeView === 12" label="Cwc Input"
+            [actions]="cwcPickerMultipleActions$ | async">
+            <cwc-select formControlName="cwcPickerMultiple" [compareWith]="'id' | cwcCompareWith" multiple="true">
+              <cwc-select-option *ngFor="let opt of options; trackBy: 'id' | cwcTrackBy" [cwcValue]="opt">
+                {{ opt.name }}
+              </cwc-select-option>
+            </cwc-select>
           </app-component-view>
 
           <button (click)="updateValues()">Reset values to init</button>
@@ -143,8 +169,8 @@
     <p>
       <label>Cwc radio - ngModel binding</label>
     </p>
-    <cwc-radio-group name="text" [(ngModel)]="cwcRadioGroupModel" [compareWith]="'id' | compareWith">
-      <cwc-radio style="margin-right: 1rem" *ngFor="let opt of options; trackBy: 'id' | trackBy" [cwcValue]="opt">
+    <cwc-radio-group name="text" [(ngModel)]="cwcRadioGroupModel" [compareWith]="'id' | cwcCompareWith">
+      <cwc-radio style="margin-right: 1rem" *ngFor="let opt of options; trackBy: 'id' | cwcTrackBy" [cwcValue]="opt">
         {{ opt.name }}
       </cwc-radio>
     </cwc-radio-group>
@@ -152,8 +178,8 @@
     <pre>{{ cwcRadioGroupModel | json }}</pre>
   </div>
 
-  <cwc-picker [compareWith]="'id' | compareWith" [(ngModel)]="cwcRadioGroupModel">
-    <option *ngFor="let opt of options; trackBy: 'id' | trackBy" [cwcValue]="opt">{{opt.name}}</option>
+  <cwc-picker [compareWith]="'id' | cwcCompareWith" [(ngModel)]="cwcRadioGroupModel">
+    <option *ngFor="let opt of options; trackBy: 'id' | cwcTrackBy" [cwcValue]="opt">{{opt.name}}</option>
   </cwc-picker>
 
   <!--
@@ -164,11 +190,11 @@
     <cwc-radio-group
       name="text"
       [(ngModel)]="cwcRadioGroupModel"
-      [compareWith]="'id' | compareWith"
+      [compareWith]="'id' | cwcCompareWith"
     >
       <cwc-radio
         style="margin-right: 1rem"
-        *ngFor="let opt of options; trackBy: 'id' | trackBy"
+        *ngFor="let opt of options; trackBy: 'id' | cwcTrackBy"
         [cwcValue]="opt"
       >
         {{ opt.name }}

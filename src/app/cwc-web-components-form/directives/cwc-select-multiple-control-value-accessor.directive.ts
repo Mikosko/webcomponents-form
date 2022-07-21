@@ -5,9 +5,12 @@ import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-
 
 @Directive({
   selector: `
-    cwc-picker[multiple]:not([cwcFormDisabled])[formControlName],
-    cwc-picker[multiple]:not([cwcFormDisabled])[formControl],
-    cwc-picker[multiple]:not([cwcFormDisabled])[ngModel],
+    cwc-picker[multiple][formControlName],
+    cwc-picker[multiple][formControl],
+    cwc-picker[multiple][ngModel],
+    cwc-select[multiple][formControlName],
+    cwc-select[multiple][formControl],
+    cwc-select[multiple][ngModel],
     [cwcSelectMultipleControlValueAccessor]`,
   host: {
     '(cwcChange)': 'onChange($event.detail); onTouched()',
@@ -51,7 +54,9 @@ export class CwcSelectMultipleControlValueAccessorDirective
   // Override method is not supported
   public /*override*/ registerOnChange(fn: (value: any) => any): void {
     this.onChange = ($selectedOptions: { value: string; name: string }[]) => {
-      this.value = $selectedOptions.map((opt) =>
+      const selectedOptions = Array.isArray($selectedOptions) ? $selectedOptions : [];
+
+      this.value = selectedOptions.map((opt) =>
         this.getOptionValue(opt.value)
       );
 

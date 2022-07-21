@@ -5,9 +5,12 @@ import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-
 
 @Directive({
   selector: `
-    cwc-picker:not([multiple]):not([cwcFormDisabled])[formControlName],
-    cwc-picker:not([multiple]):not([cwcFormDisabled])[formControl],
-    cwc-picker:not([multiple]):not([cwcFormDisabled])[ngModel],
+    cwc-picker:not([multiple])[formControlName],
+    cwc-picker:not([multiple])[formControl],
+    cwc-picker:not([multiple])[ngModel],
+    cwc-select:not([multiple])[formControlName],
+    cwc-select:not([multiple])[formControl],
+    cwc-select:not([multiple])[ngModel],
     [cwcSelectControlValueAccessor]`,
   host: {
     '(cwcChange)': 'onChange($event.detail.value); onTouched()',

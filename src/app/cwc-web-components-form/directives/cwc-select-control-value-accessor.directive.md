@@ -5,9 +5,12 @@ The [ControlValueAccessor](https://angular.io/api/forms/ControlValueAccessor) fo
 ## Selectors
 
 ```css
-cwc-picker:not([multiple]):not([cwcFormDisabled])[formControlName]
-cwc-picker:not([multiple]):not([cwcFormDisabled])[formControl]
-cwc-picker:not([multiple]):not([cwcFormDisabled])[ngModel]
+cwc-picker:not([multiple])[formControlName]
+cwc-picker:not([multiple])[formControl]
+cwc-picker:not([multiple])[ngModel]
+cwc-select:not([multiple])[formControlName]
+cwc-select:not([multiple])[formControl]
+cwc-select:not([multiple])[ngModel]
 [cwcSelectControlValueAccessor]
 ```
 

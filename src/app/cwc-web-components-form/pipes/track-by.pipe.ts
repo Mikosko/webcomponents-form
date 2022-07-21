@@ -8,7 +8,7 @@ interface TrackByCache {
 var cache: TrackByCache = Object.create(null);
 
 @Pipe({
-  name: 'trackBy',
+  name: 'cwcTrackBy',
   pure: true,
 })
 export class TrackByPipe implements PipeTransform {

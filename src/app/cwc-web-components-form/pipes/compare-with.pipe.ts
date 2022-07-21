@@ -8,7 +8,7 @@ interface CompareWithCache {
 var cache: CompareWithCache = Object.create(null);
 
 @Pipe({
-  name: 'compareWith',
+  name: 'cwcCompareWith',
   pure: true,
 })
 export class CompareWithPipe implements PipeTransform {

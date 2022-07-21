@@ -13,6 +13,7 @@ import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-
 @Directive({
   selector: `,
     cwc-radio,
+    cwc-select-option,
     cwc-picker > option,
     [cwcOptionControl]`,
   host: { '(cwcBlur)': 'onTouched()' },
