@@ -1,7 +1,7 @@
 import { Directive, Input } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { coerceBooleanProperty } from '../utils/coerce-boolean-property';
-import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-accessor.directive';
+import { CwcBaseControlValueAccessorDirective } from './base-control-value-accessor.directive';
 
 @Directive({
   selector: `
@@ -16,10 +16,8 @@ import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-a
     '(cwcBlur)': 'onTouched()',
   },
 })
-export class CwcDateControlValueAccessorDirective
-  extends CwcBaseControlValueAccessorDirective
-  implements ControlValueAccessor
-{
+export class CwcDateControlValueAccessorDirective extends CwcBaseControlValueAccessorDirective
+  implements ControlValueAccessor {
   public value!: string | string[];
 
   public fromValue!: string | null;

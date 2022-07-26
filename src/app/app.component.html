@@ -182,6 +182,29 @@
     <option *ngFor="let opt of options; trackBy: 'id' | cwcTrackBy" [cwcValue]="opt">{{opt.name}}</option>
   </cwc-picker>
 
+
+    <form *ngIf="{listOfStates: listOfStates$ | async} as state" [formGroup]="testGroup">
+      <cwc-picker placeholder="Select country"  [compareWith]="'id' | cwcCompareWith"  (ngModelChange)="testEvent($event)" formControlName="country">
+        <option [cwcValue]="opt" *ngFor="let opt of listOfCountries; trackBy: 'id' | cwcTrackBy">{{opt.name}}</option>
+      </cwc-picker>
+
+      <cwc-picker placeholder="Select state"  [compareWith]="'id' | cwcCompareWith" formControlName="state">
+        <option [cwcValue]="opt" *ngFor="let opt of state.listOfStates; trackBy: 'id' | cwcTrackBy">{{opt.name}}</option>
+      </cwc-picker>
+
+      <cwc-select placeholder="Select state"  [compareWith]="'id' | cwcCompareWith" formControlName="state">
+        <cwc-select-option [cwcValue]="opt" *ngFor="let opt of state.listOfStates; trackBy: 'id' | cwcTrackBy">{{opt.name}}</cwc-select-option>
+      </cwc-select>
+
+
+      <select [compareWith]="'id' | cwcCompareWith" formControlName="state">
+        <option [ngValue]="opt" *ngFor="let opt of state.listOfStates; trackBy: 'id' | cwcTrackBy">{{opt.name}}</option>
+      </select>
+
+    <pre>{{testGroup.getRawValue() | json}}</pre>
+    <!-- <pre>{{state.listOfStates | json}}</pre> -->
+
+    </form>
   <!--
   <div>
     <p>

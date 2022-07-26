@@ -11,7 +11,7 @@ var cache: CompareWithCache = Object.create(null);
   name: 'cwcCompareWith',
   pure: true,
 })
-export class CompareWithPipe implements PipeTransform {
+export class CwcCompareWithPipe implements PipeTransform {
   public transform(keyPath: string) {
     if (!cache[keyPath]) {
       cache[keyPath] = <T>(a: T, b: T) => {

@@ -1,7 +1,7 @@
 import { Directive } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { coerceNumberProperty } from '../utils/coerce-number-property';
-import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-accessor.directive';
+import { CwcBaseControlValueAccessorDirective } from './base-control-value-accessor.directive';
 
 @Directive({
   selector: `
@@ -14,10 +14,8 @@ import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-a
     '(cwcBlur)': 'onTouched()',
   },
 })
-export class CwcRatingControlValueAccessorDirective
-  extends CwcBaseControlValueAccessorDirective
-  implements ControlValueAccessor
-{
+export class CwcRatingControlValueAccessorDirective extends CwcBaseControlValueAccessorDirective
+  implements ControlValueAccessor {
   // @TODO: cwc-rater call cwcChange on Init
   private _fixBug = false;
 
@@ -28,7 +26,7 @@ export class CwcRatingControlValueAccessorDirective
 
   // Override method is not supported
   public /*override*/ registerOnChange(fn: any): void {
-    this.onChange = (value) => {
+    this.onChange = value => {
       if (this._fixBug) {
         fn(coerceNumberProperty(value));
       }

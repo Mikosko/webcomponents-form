@@ -2,16 +2,14 @@ import { Directive, Input } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { buildValueString } from '../utils/build-value-string';
 import { extractId } from '../utils/extract-id';
-import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-accessor.directive';
-import { CwcOptionControlDirective } from './cwc-option-control.directive';
+import { CwcBaseControlValueAccessorDirective } from './base-control-value-accessor.directive';
+import { CwcOptionControlDirective } from './option-control.directive';
 
 @Directive({
   selector: '[cwcOptionGroupValueAccessor]',
 })
-export class CwcOptionGroupControlValueAccessorDirective<V>
-  extends CwcBaseControlValueAccessorDirective
-  implements ControlValueAccessor
-{
+export class CwcOptionGroupControlValueAccessorDirective<V> extends CwcBaseControlValueAccessorDirective
+  implements ControlValueAccessor {
   private _idCounter = 0;
 
   public value!: V;
@@ -29,7 +27,7 @@ export class CwcOptionGroupControlValueAccessorDirective<V>
   // Override method is not supported
   public /*override*/ registerOnChange(fn: (value: any) => any): void {
     this.onChange = (valueString: string) => {
-      this.value = this.getOptionValue(valueString);
+      this.value = valueString ? this.getOptionValue(valueString) : this.value;
       fn(this.value);
     };
   }

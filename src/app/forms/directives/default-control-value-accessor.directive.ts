@@ -1,6 +1,6 @@
 import { Directive } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-accessor.directive';
+import { CwcBaseControlValueAccessorDirective } from './base-control-value-accessor.directive';
 
 @Directive({
   selector: `
@@ -16,10 +16,8 @@ import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-a
     '(cwcBlur)': 'onTouched()',
   },
 })
-export class CwcDefaultControlValueAccessorDirective
-  extends CwcBaseControlValueAccessorDirective
-  implements ControlValueAccessor
-{
+export class CwcDefaultControlValueAccessorDirective extends CwcBaseControlValueAccessorDirective
+  implements ControlValueAccessor {
   public writeValue(value: any): void {
     const normalizedValue = value == null ? '' : value;
     this.setProperty('value', normalizedValue);

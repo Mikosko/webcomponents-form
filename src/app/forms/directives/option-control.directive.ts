@@ -1,14 +1,6 @@
-import {
-  Directive,
-  ElementRef,
-  Host,
-  Input,
-  OnDestroy,
-  Optional,
-  Renderer2
-} from '@angular/core';
+import { Directive, ElementRef, Host, Input, OnDestroy, Optional, Renderer2 } from '@angular/core';
 import { buildValueString } from '../utils/build-value-string';
-import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-control-value-accessor.directive';
+import { CwcOptionGroupControlValueAccessorDirective } from './option-group-control-value-accessor.directive';
 
 @Directive({
   selector: `,
@@ -26,7 +18,7 @@ export class CwcOptionControlDirective implements OnDestroy {
     @Host()
     private _control: CwcOptionGroupControlValueAccessorDirective<any>,
     private _renderer: Renderer2,
-    private _elementRef: ElementRef
+    private _elementRef: ElementRef,
   ) {
     if (this._control) {
       this._id = this._control.registerOption(this);
@@ -64,16 +56,9 @@ export class CwcOptionControlDirective implements OnDestroy {
 
   public setSelected(isSelected: boolean) {
     if (isSelected) {
-      this._renderer.setAttribute(
-        this._elementRef.nativeElement,
-        'selected',
-        'true'
-      );
+      this._renderer.setAttribute(this._elementRef.nativeElement, 'selected', 'true');
     } else {
-      this._renderer.removeAttribute(
-        this._elementRef.nativeElement,
-        'selected'
-      );
+      this._renderer.removeAttribute(this._elementRef.nativeElement, 'selected');
     }
   }
 

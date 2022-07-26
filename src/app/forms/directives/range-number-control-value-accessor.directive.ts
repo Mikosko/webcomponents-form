@@ -1,8 +1,8 @@
 import { Directive, HostBinding } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { CwcNumericFilter } from '@cmx-web-components/angular';
+import { CwcNumericFilter } from '../../directives/proxies';
 import { coerceNumberProperty } from '../utils/coerce-number-property';
-import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-accessor.directive';
+import { CwcBaseControlValueAccessorDirective } from './base-control-value-accessor.directive';
 
 @Directive({
   selector: `
@@ -15,10 +15,8 @@ import { CwcBaseControlValueAccessorDirective } from './cwc-base-control-value-a
     '(cwcBlur)': 'onTouched()',
   },
 })
-export class CwcRangeNumberControlValueAccessorDirective
-  extends CwcBaseControlValueAccessorDirective
-  implements ControlValueAccessor
-{
+export class CwcRangeNumberControlValueAccessorDirective extends CwcBaseControlValueAccessorDirective
+  implements ControlValueAccessor {
   @HostBinding('attr.upper-value')
   public upperValue!: number;
 
@@ -35,9 +33,6 @@ export class CwcRangeNumberControlValueAccessorDirective
   }
 
   protected updateValues() {
-    this.getShadowElement<CwcNumericFilter>().setValues(
-      this.lowerValue,
-      this.upperValue
-    );
+    this.getShadowElement<CwcNumericFilter>().setValues(this.lowerValue, this.upperValue);
   }
 }

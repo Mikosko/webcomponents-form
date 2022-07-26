@@ -1,6 +1,6 @@
 import { Directive, forwardRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-control-value-accessor.directive';
+import { CwcOptionGroupControlValueAccessorDirective } from './option-group-control-value-accessor.directive';
 
 @Directive({
   selector: `
@@ -19,6 +19,5 @@ import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-
     },
   ],
 })
-export class CwcRadioGroupControlValueAccessorDirective
-  extends CwcOptionGroupControlValueAccessorDirective<any>
+export class CwcRadioGroupControlValueAccessorDirective extends CwcOptionGroupControlValueAccessorDirective<any>
   implements ControlValueAccessor {}

@@ -11,7 +11,7 @@ var cache: TrackByCache = Object.create(null);
   name: 'cwcTrackBy',
   pure: true,
 })
-export class TrackByPipe implements PipeTransform {
+export class CwcTrackByPipe implements PipeTransform {
   public transform(keyPath: string) {
     if (!cache[keyPath]) {
       cache[keyPath] = <T extends Record<string, any>>(

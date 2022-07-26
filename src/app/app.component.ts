@@ -1,13 +1,90 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { map, scan, startWith } from 'rxjs/operators';
+import { map, scan, startWith, take } from 'rxjs/operators';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  testGroup = this.fb.group({
+    country: [],
+    state: [],
+  });
+
+  public listOfCountries = [
+    { id: 'USA', name: 'USA' },
+    { id: 'CANADA', name: 'Canada' },
+  ];
+
+  ngOnInit() {
+    this.testGroup.controls['country'].valueChanges
+      .pipe(take(1))
+      .subscribe((v) => {
+        this.testEvent(v);
+      });
+
+    this.testGroup.controls['country'].setValue({ id: 'USA' });
+    this.testGroup.controls['state'].setValue({ id: '1' });
+  }
+
+  testEvent(country: { id: string; name: any }) {
+    const countryCode = {
+      USA: 0,
+      CANADA: 1,
+    } as { [key in string]: number };
+
+    const index = countryCode[country.id];
+
+    const stateOfCountry = [
+      [
+        { id: '1', name: 'Alabama' },
+        { id: '2', name: 'Alaska' },
+        { id: '3', name: 'Arizona' },
+      ],
+      [
+        { id: '4', name: 'Alberta' },
+        { id: '5', name: 'British Columbia' },
+        { id: '6', name: 'Manitoba' },
+      ],
+    ] as any;
+
+    const test = [
+      { id: '1', name: 'Alabama' },
+      { id: '5', name: 'British Columbia' },
+    ];
+
+
+    // this.listOfStates = [
+    //   { id: '4', name: 'Alberta' },
+    //   { id: '5', name: 'British Columbia' },
+    //   { id: '6', name: 'Manitoba' },
+    // ];
+
+
+    this.listOfStates$.next(stateOfCountry[index]);
+    this.testGroup.controls['state'].setValue(test[index]);
+    setTimeout(() => {
+    }, 500);
+  }
+
+  public listOfStates = [
+    { id: '1', name: 'Alabama' },
+    { id: '2', name: 'Alaska' },
+    { id: '3', name: 'Arizona' },
+
+    { id: '4', name: 'Alberta' },
+    { id: '5', name: 'British Columbia' },
+    { id: '6', name: 'Manitoba' },
+
+    { id: '7', name: 'Aguascalientes' },
+    { id: '8', name: 'Baja California' },
+    { id: '9', name: 'Baja California Sur' },
+  ];
+
+  public listOfStates$ = new BehaviorSubject(this.listOfStates);
+
   title = 'cmx-webcomponents-test';
 
   constructor(public fb: FormBuilder, public cd: ChangeDetectorRef) {}

@@ -1,7 +1,7 @@
 import { Directive, forwardRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { buildValueString } from '../utils/build-value-string';
-import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-control-value-accessor.directive';
+import { CwcOptionGroupControlValueAccessorDirective } from './option-group-control-value-accessor.directive';
 
 @Directive({
   selector: `
@@ -19,22 +19,18 @@ import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-
   providers: [
     {
       provide: CwcOptionGroupControlValueAccessorDirective,
-      useExisting: forwardRef(
-        () => CwcSelectMultipleControlValueAccessorDirective
-      ),
+      useExisting: forwardRef(() => CwcSelectMultipleControlValueAccessorDirective),
     },
   ],
 })
-export class CwcSelectMultipleControlValueAccessorDirective
-  extends CwcOptionGroupControlValueAccessorDirective<any[]>
-  implements ControlValueAccessor
-{
+export class CwcSelectMultipleControlValueAccessorDirective extends CwcOptionGroupControlValueAccessorDirective<any[]>
+  implements ControlValueAccessor {
   // Override method is not supported
   public /*override*/ writeValue(value: any): void {
     this.value = value;
 
     if (Array.isArray(value)) {
-      const ids = value.map((v) => this.getOptionId(v));
+      const ids = value.map(v => this.getOptionId(v));
 
       const optionSelectedStateSetter = (opt: any, o: any) => {
         opt.setSelected(ids.includes(o));
@@ -47,7 +43,10 @@ export class CwcSelectMultipleControlValueAccessorDirective
         return buildValueString(id, v);
       });
 
-      this.setProperty('value', valueString);
+      // @TODO: This postpone render to update UI of cwc-picker where is some bug with updating. Not apply for cwc-select.
+      setTimeout(() => {
+        this.setProperty('value', ids.length === 0 ? valueString : '');
+      });
     }
   }
 
@@ -56,9 +55,7 @@ export class CwcSelectMultipleControlValueAccessorDirective
     this.onChange = ($selectedOptions: { value: string; name: string }[]) => {
       const selectedOptions = Array.isArray($selectedOptions) ? $selectedOptions : [];
 
-      this.value = selectedOptions.map((opt) =>
-        this.getOptionValue(opt.value)
-      );
+      this.value = selectedOptions.map(opt => this.getOptionValue(opt.value));
 
       fn(this.value);
     };

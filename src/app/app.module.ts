@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import {
-  CmxWebComponentsFormsModule,
+  // CmxWebComponentsFormsModule,
   CmxWebComponentsModule,
 } from '@cmx-web-components/angular';
 
 import { AppComponent } from './app.component';
-import { CwcWebComponentsFormModule } from './cwc-web-components-form/cwc-web-components-form.module';
+import { CmxWebComponentsFormsModule } from './forms';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -15,11 +15,11 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     SharedModule,
     CmxWebComponentsModule.forRoot(),
-    // CmxWebComponentsFormsModule,
+    CmxWebComponentsFormsModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    CwcWebComponentsFormModule,
+    // CwcWebComponentsFormModule,
   ],
   // providers: [CwcTrackByPipe, CwcCompareWithPipe],
   bootstrap: [AppComponent],

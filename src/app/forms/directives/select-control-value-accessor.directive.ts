@@ -1,7 +1,7 @@
 import { Directive, forwardRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { buildValueString } from '../utils/build-value-string';
-import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-control-value-accessor.directive';
+import { CwcOptionGroupControlValueAccessorDirective } from './option-group-control-value-accessor.directive';
 
 @Directive({
   selector: `
@@ -23,21 +23,23 @@ import { CwcOptionGroupControlValueAccessorDirective } from './cwc-option-group-
     },
   ],
 })
-export class CwcSelectControlValueAccessorDirective
-  extends CwcOptionGroupControlValueAccessorDirective<any>
-  implements ControlValueAccessor
-{
+export class CwcSelectControlValueAccessorDirective extends CwcOptionGroupControlValueAccessorDirective<any>
+  implements ControlValueAccessor {
   // Override method is not supported
   public /*override*/ writeValue(value: any): void {
     this.value = value;
     const id = this.getOptionId(value);
     const valueString = buildValueString(id, value);
-    this.setProperty('value', valueString);
 
     const optionSelectedStateSetter = (opt: any, o: any) => {
       opt.setSelected(id === o);
     };
 
     this.optionMap.forEach(optionSelectedStateSetter);
+    
+    // @TODO: This postpone render to update UI of cwc-picker where is some bug with updating. Not apply for cwc-select.
+    setTimeout(() => {
+      this.setProperty('value', id ? valueString : '');
+    });
   }
 }
